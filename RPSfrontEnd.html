@@ -8,7 +8,7 @@
     </style>
 </head>
 <body>
-
+    <button class="startRPS" onclick="playRound()">Play!</button>
 
     <script>
 
@@ -17,11 +17,22 @@
             return compChoices[Math.floor(Math.random() * 3)];
         }
 
-        const compMove = computerPlay();
+        function getMove() {
+            let rawMove = prompt('Choose your weapon:','Rock');
+            let cleanMove = rawMove.toLowerCase;
+            if (cleanMove !== 'rock' && cleanMove !== 'paper' && cleanMove !== 'scissors') {
+                alert('Choices limited to Rock, Paper, or Scissors.');
+            }
+        }
 
         function playRound(playerMove, CompMove) {
-
+            const compMove = computerPlay();
+            const playerMove = getMove();
+            
+            
         }
+
+        
 
     </script>
 </body>
