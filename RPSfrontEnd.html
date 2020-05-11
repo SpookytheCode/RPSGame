@@ -58,13 +58,12 @@
         function fiveRounds() {
             let roundCount = 1;
             
-
-            for (i = 0; i < 6; i++1) {
+            for (let i = 0; i < 5; i++) {
                 console.log(`Round ${roundCount}, start!`);
                 console.log(playRound());
                 console.log(`Current score: Humans ${playerScore}; Robots ${compScore}.`);
-                i++;
                 ++roundCount;
+                
             }
 
         } 
