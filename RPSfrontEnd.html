@@ -32,36 +32,45 @@
             if (compMove === playerMove) {
                 return `Draw! Both played ${compMove}!`;
             } else if (compMove === "rock" && playerMove === "paper") {
+                playerScore++;
                 return 'You win! Paper beats rock!';
             } else if (compMove === 'rock' && playerMove === 'scissors') {
+                compScore++;
                 return 'You lose! Rock beats scissors';
             } else if (compMove === 'paper' && playerMove === 'rock') {
+                compScore++;
                 return 'You lose! Paper beats rock!';
             } else if (compMove === 'paper' && playerMove === 'scissors') {
+                playerScore++;
                 return 'You win! Scissors beats paper!';
             } else if (compMove === 'scissors' && playerMove === 'rock') {
+                playerScore++;
                 return 'You win! Rock beats scissors!';
             } else if (compMove === 'scissors' && playerMove === 'paper') {
+                compScore++;
                 return 'You lose! Scissors beats paper!';
-            } 
-
-            
+            }         
         }
 
+
         function fiveRounds() {
-            let gameScore = 0;
             let roundCount = 1;
-            let compScore = 0;
-            let playerScore = 0;
+            /* let compScore = 0;
+            let playerScore = 0; */
 
             for (i = 0; i < 6; i++) {
+                let compScore = 0;
+                let playerScore = 0;
                 console.log(`Round ${roundCount}, start!`);
-                console.log(playround());
+                console.log(playRound());
+                console.log(`Current score: Humans ${playerScore}; Robots ${compScore}.`);
+                ++i;
+                ++roundCount;
             }
 
         } 
 
-        
+      
 
         
 
