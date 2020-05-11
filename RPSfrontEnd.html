@@ -8,7 +8,7 @@
     </style>
 </head>
 <body>
-    <button class="startRPS" onclick="playRound()">Play!</button>
+    <button class="startRPS" onclick="fiveRounds()">Play!</button>
 
     <script>
 
@@ -23,11 +23,13 @@
             return cleanMove;
         }
 
-        
+        let compScore = 0;
+        let playerScore = 0;
 
         function playRound(playerMove, compMove) {
             compMove = computerPlay();
             playerMove = getMove();
+            
 
             if (compMove === playerMove) {
                 return `Draw! Both played ${compMove}!`;
@@ -55,21 +57,19 @@
 
         function fiveRounds() {
             let roundCount = 1;
-            /* let compScore = 0;
-            let playerScore = 0; */
+            
 
-            for (i = 0; i < 6; i++) {
-                let compScore = 0;
-                let playerScore = 0;
+            for (i = 0; i < 6; i++1) {
                 console.log(`Round ${roundCount}, start!`);
                 console.log(playRound());
                 console.log(`Current score: Humans ${playerScore}; Robots ${compScore}.`);
-                ++i;
+                i++;
                 ++roundCount;
             }
 
         } 
 
+        
       
 
         
