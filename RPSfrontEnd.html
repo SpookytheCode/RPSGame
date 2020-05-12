@@ -11,21 +11,22 @@
     <button class="startRPS" onclick="fiveRounds()">Play!</button>
 
     <script>
-
+        //fetches random computer move
         function computerPlay() {
             let compChoices = ['rock', 'paper', 'scissors'];
             return compChoices[Math.floor(Math.random() * 3)];
         }
-
+        //prompts for user choice
         function getMove() {
             let rawMove = prompt('Choose your weapon:','Rock');
             let cleanMove = rawMove.toLowerCase();
             return cleanMove;
         }
-
+        //initialize scorecount
         let compScore = 0;
         let playerScore = 0;
 
+        //logic for a single round of play, returning result string
         function playRound(playerMove, compMove) {
             compMove = computerPlay();
             playerMove = getMove();
@@ -54,7 +55,7 @@
             }         
         }
 
-
+        //plays five sequential rounds and prints status messages to console
         function fiveRounds() {
             let roundCount = 1;
             
