@@ -24,6 +24,7 @@
   align-self: center;
   width: 10%;
   background-color: rgb(199, 213, 238);
+  transition: 0.4s;
 }
 
 .choiceButtons:hover {
