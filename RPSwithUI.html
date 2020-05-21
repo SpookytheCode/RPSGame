@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rock, Paper, Scissors!</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="RPSss.css">
+</head>
+<body>
+  <div class="playContainer">  
+    <button class="startRPS" onclick="fiveRounds()">Play!</button>
+  </div>
+
+  <div class="choiceContainer">
+    <button id="btnRock" class="choiceButtons">Rock</button>
+    <button id="btnPaper" class="choiceButtons">Paper</button>
+    <button id="btnScissors" class="choiceButtons">Scissors</button>
+  </div>
+
+
+    <script>
+        //fetches random computer move
+        function computerPlay() {
+            let compChoices = ['rock', 'paper', 'scissors'];
+            return compChoices[Math.floor(Math.random() * 3)];
+        }
+        //prompts for user choice
+        function getMove() {
+            let rawMove = prompt('Choose your weapon:','Rock');
+            let cleanMove = rawMove.toLowerCase();
+            return cleanMove;
+        }
+        //initialize scorecount
+        let compScore = 0;
+        let playerScore = 0;
+
+        //logic for a single round of play, returning result string
+        function playRound(playerMove, compMove) {
+            compMove = computerPlay();
+            playerMove = getMove();
+            
+
+            if (compMove === playerMove) {
+                return `Draw! Both played ${compMove}!`;
+            } else if (compMove === "rock" && playerMove === "paper") {
+                playerScore++;
+                return 'You win! Paper beats rock!';
+            } else if (compMove === 'rock' && playerMove === 'scissors') {
+                compScore++;
+                return 'You lose! Rock beats scissors';
+            } else if (compMove === 'paper' && playerMove === 'rock') {
+                compScore++;
+                return 'You lose! Paper beats rock!';
+            } else if (compMove === 'paper' && playerMove === 'scissors') {
+                playerScore++;
+                return 'You win! Scissors beats paper!';
+            } else if (compMove === 'scissors' && playerMove === 'rock') {
+                playerScore++;
+                return 'You win! Rock beats scissors!';
+            } else if (compMove === 'scissors' && playerMove === 'paper') {
+                compScore++;
+                return 'You lose! Scissors beats paper!';
+            }         
+        }
+
+        //plays five sequential rounds and prints status messages to console
+        /* function fiveRounds() {
+            let roundCount = 1;
+            
+            for (let i = 0; i < 5; i++) {
+                console.log(`Round ${roundCount}, start!`);
+                console.log(playRound());
+                console.log(`Current score: Humans ${playerScore}; Robots ${compScore}.`);
+                ++roundCount;
+                
+            }
+        
+
+        } */
+
+        
+      
+
+        
+
+    </script>
+</body>
+</html>
