@@ -6,6 +6,16 @@
   justify-content: center;
 }
 
+#scoreboard {
+  display: flex;
+  justify-content: center;
+  
+}
+
+.counters {
+  margin: 15px 50px;
+  text-align: center;
+}
 
 .choiceContainer {
   background-color: rgb(173, 199, 247);
@@ -21,7 +31,6 @@
   border: none;
   padding: 15px 20px;
   margin: 15px;
-  align-self: center;
   width: 10%;
   background-color: rgb(199, 213, 238);
   transition: 0.4s;
