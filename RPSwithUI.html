@@ -13,12 +13,17 @@
   <div id="scoreboard">
     <div class="counters" id="score">
         <h1 id=scoreDisplay>0</h1>
-        <h4>Score</h4>
+        <h4>Humans</h4>
     </div>
 
     <div class="counters" id="round">
         <h1 id="roundDisplay">0</h1>
         <h4>Round</h4>
+    </div>
+
+    <div class="counters" id="compScore">
+        <h1 id="compScoreDisplay">0</h1>
+        <h4>Robots</h4>
     </div>
   </div>
 
@@ -45,6 +50,7 @@
         //initialize scorecount
         let compScore = 0;
         let playerScore = 0;
+        let roundCount = 1;
 
         let allChoices = document.getElementsByClassName("choiceButtons")
         for (let i = 0; i < allChoices.length; i++) {
@@ -53,15 +59,16 @@
        
 
         document.getElementById("btnRock").addEventListener("click", function() {
-            moveValue = document.getElementById("btnRock").value
+            moveValue = document.getElementById("btnRock").value;
         });
 
         document.getElementById("btnPaper").addEventListener("click", function(){
-            moveValue = document.getElementById("btnPaper").value
+            moveValue = document.getElementById("btnPaper").value;
         });
 
-        let logContainer = document.getElementById("gameLogDiv")
-        let logDisplay = document.getElementById("gameLogP")
+        let logContainer = document.getElementById("gameLogDiv");
+        let logDisplay = document.getElementById("gameLogP");
+        let scoreCounter = document.getElementById("scoreDisplay");
 
 
         //logic for a single round of play, returning result string
@@ -72,11 +79,12 @@
 
             if (compMove === playerMove) {
                 logDisplay.textContent = `Draw! Both played ${compMove}!`;
-
-            } else if (compMove === "rock" && playerMove === "paper") {
-                playerScore++;
+                roundCount++;
                 
-                'You win! Paper beats rock!';
+            } else if (compMove === "rock" && playerMove === "paper") {
+                ++playerScore;
+                logDisplay.textContent = 'You win! Paper beats rock!';
+                scoreCounter.textContent = playerScore;
             } else if (compMove === 'rock' && playerMove === 'scissors') {
                 compScore++;
                 return 'You lose! Rock beats scissors';
