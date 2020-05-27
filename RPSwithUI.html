@@ -16,6 +16,10 @@
     <button id="btnScissors" class="choiceButtons" value="scissors">Scissors</button>
   </div>
 
+  <div class="gameLogDiv">
+      
+  </div>
+
 
     <script>
         //fetches random computer move
@@ -30,11 +34,21 @@
         let compScore = 0;
         let playerScore = 0;
 
-        document.getElementsByClassName("choiceButtons").addEventListener("click", playRound);
+        let allChoices = document.getElementsByClassName("choiceButtons")
+        for (let i = 0; i < allChoices.length; i++) {
+            allChoices[i].addEventListener('click', playRound, false);
+        }
+       
 
-        document.getElementById("btnRock").addEventListener("click", function(){
+        document.getElementById("btnRock").addEventListener("click", function() {
             moveValue = document.getElementById("btnRock").value
         });
+
+        document.getElementById("btnPaper").addEventListener("click", function(){
+            moveValue = document.getElementById("btnPaper").value
+        });
+
+
 
         //logic for a single round of play, returning result string
         function playRound(playerMove, compMove) {
@@ -43,10 +57,13 @@
             
 
             if (compMove === playerMove) {
-                return `Draw! Both played ${compMove}!`;
+                let newP = document.createElement('p');
+                newP.textContent = `Draw! Both played ${compMove}!`;
+
             } else if (compMove === "rock" && playerMove === "paper") {
                 playerScore++;
-                return 'You win! Paper beats rock!';
+                
+                'You win! Paper beats rock!';
             } else if (compMove === 'rock' && playerMove === 'scissors') {
                 compScore++;
                 return 'You lose! Rock beats scissors';
