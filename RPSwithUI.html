@@ -17,7 +17,7 @@
     </div>
 
     <div class="counters" id="round">
-        <h1 id="roundDisplay">0</h1>
+        <h1 id="roundDisplay">1</h1>
         <h4>Round</h4>
     </div>
 
@@ -51,12 +51,8 @@
         let compScore = 0;
         let playerScore = 0;
         let roundCount = 1;
-
-        let allChoices = document.getElementsByClassName("choiceButtons")
-        for (let i = 0; i < allChoices.length; i++) {
-            allChoices[i].addEventListener('click', playRound, false);
-        }
-       
+        
+        // event listeners to pass button value to moveValue
 
         document.getElementById("btnRock").addEventListener("click", function() {
             moveValue = document.getElementById("btnRock").value;
@@ -66,60 +62,76 @@
             moveValue = document.getElementById("btnPaper").value;
         });
 
+        document.getElementById("btnScissors").addEventListener("click", function() {
+            moveValue = document.getElementById("btnScissors").value;
+        })
+
+        let allChoices = document.getElementsByClassName("choiceButtons")
+        for (let i = 0; i < allChoices.length; i++) {
+            allChoices[i].addEventListener('click', playRound, false);
+        }
+
+        // storing element references for script use below
+
+        let mainAnnouncer = document.getElementById("announcerText");
         let logContainer = document.getElementById("gameLogDiv");
         let logDisplay = document.getElementById("gameLogP");
         let scoreCounter = document.getElementById("scoreDisplay");
+        let roundCounter = document.getElementById("roundDisplay");
+        let compCounter = document.getElementById("compScoreDisplay")
 
 
-        //logic for a single round of play, returning result string
+
+
+        //logic for a single round of play, returning result string and iterating counters
+
         function playRound(playerMove, compMove) {
             compMove = computerPlay();
             playerMove = moveValue;
-            
 
             if (compMove === playerMove) {
                 logDisplay.textContent = `Draw! Both played ${compMove}!`;
-                roundCount++;
-                
+                ++roundCount;
+                roundCounter.textContent = roundCount;
             } else if (compMove === "rock" && playerMove === "paper") {
                 ++playerScore;
+                ++roundCount;
                 logDisplay.textContent = 'You win! Paper beats rock!';
                 scoreCounter.textContent = playerScore;
+                roundCounter.textContent = roundCount
             } else if (compMove === 'rock' && playerMove === 'scissors') {
-                compScore++;
-                return 'You lose! Rock beats scissors';
+                ++compScore;
+                ++roundCount;
+                logDisplay.textContent = 'You lose! Rock beats scissors';
+                compCounter.textContent = compScore;
+                roundCounter.textContent = roundCount;
             } else if (compMove === 'paper' && playerMove === 'rock') {
-                compScore++;
-                return 'You lose! Paper beats rock!';
+                ++compScore;
+                ++roundCount;
+                logDisplay.textContent = 'You lose! Paper beats rock!';
+                compCounter.textContent = compScore;
+                roundCounter.textContent = roundCount;
             } else if (compMove === 'paper' && playerMove === 'scissors') {
-                playerScore++;
-                return 'You win! Scissors beats paper!';
+                ++playerScore;
+                ++roundCount;
+                logDisplay.textContent = 'You win! Scissors beats paper!';
+                scoreCounter.textContent = playerScore;
+                roundCounter.textContent = roundCount;
             } else if (compMove === 'scissors' && playerMove === 'rock') {
-                playerScore++;
-                return 'You win! Rock beats scissors!';
+                ++playerScore;
+                ++roundCount;
+                logDisplay.textContent = 'You win! Rock beats scissors!';
+                scoreCounter.textContent = playerScore;
+                roundCounter.textContent = roundCount;
             } else if (compMove === 'scissors' && playerMove === 'paper') {
-                compScore++;
-                return 'You lose! Scissors beats paper!';
+                ++compScore; 
+                ++roundCount;
+                logDisplay.textContent = 'You lose! Scissors beats paper!';
+                compCounter.textContent = compScore;
+                roundCounter.textContent = roundCount;
             }         
         }
 
-        //plays five sequential rounds and prints status messages to console
-        /* function fiveRounds() {
-            let roundCount = 1;
-            
-            for (let i = 0; i < 5; i++) {
-                console.log(`Round ${roundCount}, start!`);
-                console.log(playRound());
-                console.log(`Current score: Humans ${playerScore}; Robots ${compScore}.`);
-                ++roundCount;
-                
-            }
-        
-
-        } */
-
-        
-      
 
         
 
